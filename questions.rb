@@ -48,6 +48,9 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
+	a = array.collect { |w| w.reverse}.join(" ").split
+	b = a.sort
+	c = b.collect { |w| w.reverse}.join(" ").split
 end
 
 # cut strings in half, and return the first half, e.g.
@@ -111,7 +114,7 @@ end
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
-	array = array * 2
+	array * 2
 end
 
 # convert a symbol into a string
@@ -122,7 +125,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 33
 def average_of_array(array)
-	calc = (array.inject(:+) / array.size).next
+	calc = (array.inject(:+) / array.length.to_f).round
 end
 
 # get all the elements in an array, up until the first element
@@ -130,7 +133,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-	# array.select { |v| v.size > 5 }
+	array.take_while {|x| x < 6}
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -145,6 +148,8 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
+	array.to_s
+
 end
 
 # swap the keys and values in a hash. e.g.
@@ -158,9 +163,7 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
-	x = hash.values.inject(:+)
-	y = hash.keys.inject(:+)
-	z = x + y
+	hash.flatten.inject(:+)
 end
 
 # take out all the capital letters from a string
@@ -206,6 +209,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+	string.match(/\W/)
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
